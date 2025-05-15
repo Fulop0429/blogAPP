@@ -4,7 +4,8 @@ A MiniBlog egy saját fejlesztésű, adatbázis-alapú blogoldal, amely PHP, MyS
 ahol a felhasználók bejegyzéseket olvashatnak, hozzászólhatnak, sőt like-olhatják is azokat.
 
 
-        --Funkciók--
+--Funkciók--
+
 
 Felhasználói rendszer
 - Regisztráció, bejelentkezés
