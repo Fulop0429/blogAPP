@@ -1,7 +1,6 @@
 ﻿<?php
 require 'db.php';
 require_once 'auth.php';
-
 $id = $_GET['id'] ?? null;
 
 if (!$id) {

@@ -34,6 +34,7 @@ $posts = $stmt->fetchAll();
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://unpkg.com/alpinejs" defer></script>
 </head>
+
 <body>
 <div class="container py-4" x-data="{ showForm: false }">
   <?php include 'navbar.php'; ?>
