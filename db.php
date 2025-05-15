@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 $host = 'localhost';
 $db = 'blog_demo';
 $user = 'root';
-$pass = ''; // XAMPP esetén alapból nincs jelszó
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

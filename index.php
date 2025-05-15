@@ -2,7 +2,6 @@
 require 'db.php';
 require_once 'auth.php';
 
-// Lekérjük az összes kategóriát a szűrőhöz
 $categories = $pdo->query("SELECT * FROM categories ORDER BY name")->fetchAll();
 
 $selectedCategory = $_GET['category'] ?? '';
@@ -82,7 +81,6 @@ $posts = $stmt->fetchAll();
     </form>
   <?php endif; ?>
 
-  <!-- Bejegyzések -->
   <hr>
   <?php foreach ($posts as $post): ?>
     <div class="card mb-3">

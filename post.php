@@ -9,7 +9,6 @@ if (!$id) {
     exit;
 }
 
-// === Hozzászólás beküldés
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment']) && isLoggedIn()) {
     $content = trim($_POST['comment']);
     if ($content !== '') {
@@ -20,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment']) && isLogge
     }
 }
 
-// === Like / Unlike
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['like_action']) && isLoggedIn()) {
     if ($_POST['like_action'] === 'like') {
         $stmt = $pdo->prepare("INSERT IGNORE INTO likes (post_id, user_id) VALUES (?, ?)");
@@ -33,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['like_action']) && isL
     exit;
 }
 
-// === Poszt lekérdezés
 $stmt = $pdo->prepare("
   SELECT posts.*, categories.name AS category_name
   FROM posts
@@ -48,7 +45,6 @@ if (!$post) {
     exit;
 }
 
-// === Kommentek
 $stmt = $pdo->prepare("
   SELECT comments.*, users.username
   FROM comments
@@ -59,7 +55,6 @@ $stmt = $pdo->prepare("
 $stmt->execute([$id]);
 $comments = $stmt->fetchAll();
 
-// === Like információk
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM likes WHERE post_id = ?");
 $stmt->execute([$id]);
 $totalLikes = $stmt->fetchColumn();
@@ -94,7 +89,6 @@ if (isLoggedIn()) {
   <hr>
   <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
 
-  <!-- Like gomb -->
   <form method="POST" class="mb-4">
     <?php if (isLoggedIn()): ?>
       <input type="hidden" name="like_action" value="<?= $userLiked ? 'unlike' : 'like' ?>">
@@ -106,7 +100,6 @@ if (isLoggedIn()) {
     <?php endif; ?>
   </form>
 
-  <!-- Kommentek -->
   <h4>Hozzászólások</h4>
   <?php foreach ($comments as $comment): ?>
     <div class="border rounded p-2 mb-2">
@@ -116,7 +109,6 @@ if (isLoggedIn()) {
     </div>
   <?php endforeach; ?>
 
-  <!-- Új komment -->
   <?php if (isLoggedIn()): ?>
     <form method="POST" class="mt-3">
       <textarea name="comment" rows="3" class="form-control" placeholder="Írd meg a véleményed..." required></textarea>
